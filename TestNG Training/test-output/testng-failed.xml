@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [TestNG]">
+  <test name="features">
+    <classes>
+      <class name="TrainingPackage.Test2"/>
+      <class name="TrainingPackage.TestNGFeatures"/>
+      <class name="TrainingPackage.InvocationCount"/>
+    </classes>
+  </test> <!-- features -->
+  <test name="features(failed)">
+    <classes>
+      <class name="TrainingPackage.TestNGFeatures">
+        <methods>
+          <include name="test1"/>
+          <include name="login"/>
+        </methods>
+      </class> <!-- TrainingPackage.TestNGFeatures -->
+      <class name="TrainingPackage.Test2">
+        <methods>
+          <include name="beforeMethod"/>
+          <include name="a"/>
+          <include name="afterMethod"/>
+        </methods>
+      </class> <!-- TrainingPackage.Test2 -->
+    </classes>
+  </test> <!-- features(failed) -->
+</suite> <!-- Failed suite [TestNG] -->
