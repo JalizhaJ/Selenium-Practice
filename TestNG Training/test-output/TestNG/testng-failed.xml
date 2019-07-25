@@ -1,28 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite guice-stage="DEVELOPMENT" name="Failed suite [TestNG]">
-  <test name="features">
+  <parameter name="password" value="fl33t"/>
+  <parameter name="browser" value="chrome"/>
+  <parameter name="url" value="https://academynet.com/"/>
+  <parameter name="username" value="admin"/>
+  <test name="parameters">
+    <parameter name="password" value="fl33t"/>
+    <parameter name="browser" value="chrome"/>
+    <parameter name="url" value="https://academynet.com/"/>
+    <parameter name="username" value="admin"/>
     <classes>
-      <class name="TrainingPackage.Test2"/>
-      <class name="TrainingPackage.TestNGFeatures"/>
-      <class name="TrainingPackage.InvocationCount"/>
+      <class name="TrainingPackage.ParaTestNG"/>
     </classes>
-  </test> <!-- features -->
-  <test name="features(failed)">
-    <classes>
-      <class name="TrainingPackage.TestNGFeatures">
-        <methods>
-          <include name="test1"/>
-          <include name="login"/>
-        </methods>
-      </class> <!-- TrainingPackage.TestNGFeatures -->
-      <class name="TrainingPackage.Test2">
-        <methods>
-          <include name="beforeMethod"/>
-          <include name="a"/>
-          <include name="afterMethod"/>
-        </methods>
-      </class> <!-- TrainingPackage.Test2 -->
-    </classes>
-  </test> <!-- features(failed) -->
+  </test> <!-- parameters -->
 </suite> <!-- Failed suite [TestNG] -->

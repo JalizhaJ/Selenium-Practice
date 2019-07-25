@@ -1,0 +1,19 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="TestNG">
+ <test name="parameters">
+ 
+<parameter name="env" value="prod"/> 
+<parameter name="browser" value="chrome"/>
+<parameter name="url" value="https://academynet.com/"/>
+<parameter name="username" value="admin"/>
+<parameter name="password" value="fl33t"/>
+
+ 
+ <classes>
+ <class name="TrainingPackage.ParaTestNG" />
+ </classes>
+ 
+ 
+ </test>
+</suite>
