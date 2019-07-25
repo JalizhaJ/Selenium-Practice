@@ -1,0 +1,171 @@
+TestNG
+- open source unit test framework
+- TDD Test Driven Development
+
+Purpose
+- design test cases in proper way
+- Generate html report
+- annotations
+- priorities
+- dependencies
+- grouping (reports will be generated in groups, keyword - groups)
+- data provider
+
+Java testing framework - works only for java
+
+Installation
+
+Download TestNG plugin for eclipse from “http://beust.com/eclipse/”
+Go to Help in eclipse.
+Add the URL in the “Work with” field - TestNG option will be displayed below.
+Check the checkbox and also check last option “Contact *****” and click Next & Finish.
+
+Annotations
+
+> Executed in below order:
+@BeforeSuite @AfterSuite
+@BeforeTest @AfterTest
+@BeforeClass @AfterClass
+@BeforeMethod @AfterMethod
+@Test - No of test cases
+
+> Each annotation should be associated with a method
+
+> If there are 2 test cases, it will be executed in the below order:
+@BeforeSuite
+@BeforeTest
+@BeforeClass
+@BeforeMethod @Test1 @AfterMethod
+@BeforeMethod @Test2 @AfterMethod
+@AfterClass
+@AfterTest
+@AfterSuite
+> Can also add priority to execute test cases in priority order
+@Test1(priority=1)
+@Test2(priority=2)
+
+Create a testcase
+
+Create a package
+Create a class - Do not select main method option
+Run it as TestNG
+
+TestNG Features
+
+@Test(dependsOnMethods="xxxxxx")
+
+If the dependent method gets failed, then this test will be skipped
+
+InvocationCount
+
+To run the same test case multiple time
+
+@Test(invocationCount=10)
+
+Assertions
+
+Assert.assertEquals(actualTitle, "expected title", "message if got failed");
+
+It actual checks with expected title if it got failed then the message will get displayed.
+
+Assert.assertTrue();
+
+In case of true false condition, we can use this.
+Ex: to check if logo is present
+
+Public void logo(){
+Boolean a = driver.findElement(By.xpath(“xxxxxx”)).isDisplayed();
+Assert.assertTrue(a);
+Assert.assertEquals(a, true);
+}
+
+To run all classes at a time
+
+Create a file and name it as .xml
+Enter below code and run the file as TestNG Suite
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="TestNG">
+ <test name="features">
+ <classes>
+ <class name="TrainingPackage.Test2" />
+ <class name="TrainingPackage.TestNGFeatures" />
+ <class name="TrainingPackage.InvocationCount" />
+ </classes>
+  
+ </test>
+</suite>
+
+Parameters passing using testng.xml
+
+Create an xml file with the below code:
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="TestNG">
+ <test name="parameters">
+ 
+<parameter name="env" value="prod"/>
+<parameter name="browser" value="chrome"/>
+<parameter name="url" value="https://academynet.com/"/>
+<parameter name="username" value="admin"/>
+<parameter name="password" value="fl33t"/>
+
+ <classes>
+ <class name="TrainingPackage.ParaTestNG" />
+ </classes>
+ 
+ </test>
+</suite>
+
+Main program:
+
+public class ParaTestNG {
+	
+	WebDriver driver;
+	
+	@Test
+	@Parameters({"browser","url","username","password"})
+	public void logintest(String browser, String url, String username, String password) throws InterruptedException{
+	
+		if(browser.equals("chrome")){
+		
+		System.setProperty("webdriver.chrome.driver", "C:/Users/Jaliza/Desktop/Selenium/chromedriver_win32/Newchromedriver.exe");
+		driver = new ChromeDriver();
+		}
+		else if(browser.equals("firefox")){
+		
+		System.setProperty("webdriver.gecko.driver", "C:/Users/Jaliza/Desktop/Selenium/Geckodriver/geckodriver.exe");
+		driver = new FirefoxDriver();
+			
+		}
+		
+	    driver.get(url);
+	    Thread.sleep(1000);
+		driver.findElement(By.xpath("//*[@id='bs-example-navbar-collapse-1']/div[1]/ul/li[3]/a")).click();
+		Thread.sleep(3000);
+		
+		driver.findElement(By.xpath("//*[@id='edit-name']")).clear();
+		driver.findElement(By.xpath("//*[@id='edit-name']")).sendKeys(username);
+		Thread.sleep(2000);
+		
+		driver.findElement(By.xpath("//*[@id='edit-pass']")).clear();
+		driver.findElement(By.xpath("//*[@id='edit-pass']")).sendKeys(password);
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//*[@id='edit-submit']")).click();
+		Thread.sleep(2000);
+	}
+}
+
+Screenshots
+
+Create Maven Project and add jar files & TestNG library
+Go to src/test/java and create a package
+Create a class AAA under the package and update code with annotations
+Create a folder in this project to save the SS
+Create another base class which has the code for executing the methods and test from AAA
+Update the screenshot folder path in the base class
+Create Listener class and call fail method from base class
+Now run the AAA class as TestNG
+When the test case got failed, SS is saved in the given folder
