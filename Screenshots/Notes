@@ -1,0 +1,11 @@
+Screenshots
+
+Create Maven Project and add jar files & TestNG library
+Go to src/test/java and create a package
+Create a class AAA under the package and update code with annotations
+Create a folder in this project to save the SS
+Create another base class which has the code for executing the methods and test from AAA
+Update the screenshot folder path in the base class
+Create Listener class and call fail method from base class
+Now run the AAA class as TestNG
+When the test case got failed, SS is saved in the given folder
